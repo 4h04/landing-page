@@ -1,0 +1,135 @@
+@import "mixins";
+@import "variables";
+@import "reboot";
+
+html, body {
+  transform: translate3d(0,0,0);
+  margin: 0;
+  padding: 0;
+}
+
+.l-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: space-between;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  padding: 0 1rem;
+}
+
+.brand {
+  width: auto;
+  height: auto;
+}
+
+.brand-picture {
+  max-width: 100%;
+  height: auto;
+  margin-top: -50px;
+  animation-name: scaleHeader;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+  animation-duration: 0.6s;
+}
+
+.brand-link {
+  display: block;
+  width: 100;
+  height: 100;
+}
+
+.brand span {
+  display: inline-block;
+  text-indent: -9999em;
+}
+
+.baseline {
+  text-align: center;
+  font-weight: 100;
+  text-transform: uppercase;
+  animation-name: showBaseline;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+  animation-duration: 0.4s;
+  animation-delay: 0.6s;
+  animation-fill-mode: forwards;
+  transform: scale(0);
+  font-size: 1.2rem;
+}
+
+.l-social-items {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: 300;
+  font-size: 1.5rem;
+  width: 40%;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+  animation-duration: 0.4s;
+  animation-delay: 1.2s;
+  animation-fill-mode: forwards;
+  animation-name: showIcons;
+  transform: scale(0);
+
+  a {
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.5);
+    }
+  }
+}
+
+@media (min-width: 991px) {
+  .l-social-items {
+    font-size: 2.5rem;
+    width: 20%;
+  }
+}
+
+@media (max-width: 768px) {
+  .baseline {
+    font-size: .8rem;
+  }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+  .brand-picture {
+    margin-top: -20px;
+    max-width: 60vw;
+  }
+}
+
+@keyframes scaleHeader {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes showBaseline {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes showIcons {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
