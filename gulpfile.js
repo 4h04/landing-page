@@ -11,6 +11,8 @@ var rename       = require('gulp-rename');
 var cssmin       = require('gulp-cssmin');
 var gulpif       = require("gulp-if");
 var htmlreplace  = require('gulp-html-replace');
+var manifest     = require('gulp-manifest');
+var del          = require('del');
 var path         = require('path');
 
 var production   = process.env.NODE_ENV === 'production';
@@ -77,9 +79,15 @@ gulp.task('copy:img', function() {
     .pipe(gulp.dest(config.BUILD_DIR + '/img'));
 });
 
+gulp.task('copy:font', function() {
+  return gulp.src(config.SRC_DIR + '/fonts/**')
+    .pipe(gulp.dest(config.BUILD_DIR + '/fonts'));
+});
+
 gulp.task('copy', [
   'copy:html',
-  'copy:img'
+  'copy:img',
+  'copy:font'
 ]);
 
 gulp.task('replace', function() {
@@ -108,6 +116,23 @@ gulp.task('webserver', () => {
 
 /*
  |--------------------------------------------------------------------------
+ | Cache manifest
+ |--------------------------------------------------------------------------
+ */
+gulp.task('manifest', function(){
+  return gulp.src([config.BUILD_DIR + '/**'], { base: './' })
+    .pipe(manifest({
+      timestamp: true,
+      preferOnline: true,
+      network: ['*'],
+      filename: 'app.manifest',
+      exclude: 'app.manifest'
+     }))
+    .pipe(gulp.dest(config.BUILD_DIR));
+});
+
+/*
+ |--------------------------------------------------------------------------
  | Watcher
  |--------------------------------------------------------------------------
  */
@@ -125,6 +150,14 @@ gulp.task('watch', function() {
   ], ['copy:img']);
 });
 
+gulp.task('clean', function () {
+  return del([
+    config.BUILD_DIR + '/**/*',
+    // we don't want to clean this file though so we negate the pattern
+    '!' + config.BUILD_DIR + '/.gitkeep',
+  ]);
+});
+
 /*
  |--------------------------------------------------------------------------
  | Parent tasks
@@ -136,5 +169,5 @@ gulp.task('default', function(cb) {
 });
 
 gulp.task('release', function(cb) {
-  return runSequence(['sass', 'copy'], 'replace', cb);
+  return runSequence('clean', ['sass', 'copy'], 'replace', 'manifest', cb);
 });
