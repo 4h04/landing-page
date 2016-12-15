@@ -66,7 +66,8 @@ gulp.task('copy:html', function() {
       config.SRC_DIR + '/*.xml',
       config.SRC_DIR + '/*.ico',
       config.SRC_DIR + '/*.svg',
-      config.SRC_DIR + '/*.json'
+      config.SRC_DIR + '/*.json',
+      config.SRC_DIR + '/*.txt'
     ])
     .pipe(gulp.dest(config.BUILD_DIR + ''));
 });
