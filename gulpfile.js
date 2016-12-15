@@ -120,7 +120,7 @@ gulp.task('webserver', () => {
  |--------------------------------------------------------------------------
  */
 gulp.task('manifest', function(){
-  return gulp.src([config.BUILD_DIR + '/**'], { base: './' })
+  return gulp.src([config.BUILD_DIR + '/**'], { base: config.BUILD_DIR })
     .pipe(manifest({
       timestamp: true,
       preferOnline: true,
