@@ -12,12 +12,13 @@ var cssmin       = require('gulp-cssmin');
 var gulpif       = require("gulp-if");
 var htmlreplace  = require('gulp-html-replace');
 var manifest     = require('gulp-manifest');
+var ga           = require('gulp-ga');
 var del          = require('del');
 var path         = require('path');
 
 var production   = process.env.NODE_ENV === 'production';
-const env = production ? 'production' : 'development'
-const revision = new Date().getTime()
+const revision = new Date().getTime();
+const env = require('./.env.json');
 
 var config = {
   BOWER_DIR: './bower_components',
@@ -91,7 +92,13 @@ gulp.task('copy', [
 ]);
 
 gulp.task('replace', function() {
-  return gulp.src(config.BUILD_DIR + '/index.html')
+  return gulp.src(config.BUILD_DIR + '/*.html')
+    .pipe(ga({
+      url: env.ga_url,
+      uid: env.ga_uid,
+      anonymizeIp: false,
+      sendPageView: true
+    }))
     .pipe(htmlreplace({
         'css': `/css/app.${revision}.min.css`,
     }))

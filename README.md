@@ -11,6 +11,14 @@ Node >= v4.x.x and Gulp-cli
 
 ## Installation and launch
 
+First copy and define env parameters in .env.json file
+
+```bash
+cp .env.json.dist .env.json
+```
+
+Then install node_modules and run gulp
+
 ```bash
 npm install
 gulp

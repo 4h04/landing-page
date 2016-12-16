@@ -5,6 +5,8 @@
 *.log
 *~
 
+.env.json
+
 *.DS_Store
 .AppleDouble
 .LSOverride
