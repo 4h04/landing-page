@@ -13,6 +13,7 @@ var gulpif       = require("gulp-if");
 var htmlreplace  = require('gulp-html-replace');
 var manifest     = require('gulp-manifest');
 var ga           = require('gulp-ga');
+var rsync        = require('gulp-rsync')
 var del          = require('del');
 var path         = require('path');
 
@@ -166,6 +167,10 @@ gulp.task('clean', function () {
   ]);
 });
 
+gulp.task('sync', function() {
+  return gulp.src(config.BUILD_DIR).pipe(rsync(env.rsync));
+});
+
 /*
  |--------------------------------------------------------------------------
  | Parent tasks
@@ -177,5 +182,5 @@ gulp.task('default', function(cb) {
 });
 
 gulp.task('release', function(cb) {
-  return runSequence('clean', ['sass', 'copy'], 'replace', 'manifest', cb);
+  return runSequence('clean', ['sass', 'copy'], 'replace', 'manifest', 'sync', cb);
 });
