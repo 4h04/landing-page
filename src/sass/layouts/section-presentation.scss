@@ -1,0 +1,16 @@
+// Section Presentation
+
+.section-presentation {
+  padding:50px 0;
+  background-color: $main-grey;
+  color: $main-white;
+  p {
+    font-size: 1.2rem;
+    line-height: 1.7rem;
+    font-weight: 300;
+    margin-bottom: 25px;
+  }
+  strong {
+    font-weight: 600;
+  }
+}

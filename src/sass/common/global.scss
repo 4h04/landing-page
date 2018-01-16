@@ -1,0 +1,24 @@
+// Global
+
+html, body {
+  transform: translate3d(0,0,0);
+  margin: 0;
+  padding: 0;
+  font-family: 'Raleway', sans-serif;
+}
+
+.hello {
+  outline: 1px solid red;
+}
+
+.container {
+  max-width: 992px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 3em;
+  font-weight: 300;
+  margin-bottom: 30px;
+}
