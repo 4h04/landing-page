@@ -1,0 +1,42 @@
+// flipcard
+
+.scene{
+  cursor: pointer;
+  width:100%;
+  height:100%;
+}
+
+.flip{
+  -webkit-transition: all 0.8s ease;
+  -moz-transition: all 0.8s ease;
+  -o-transition: all 0.8s ease;
+  transition: all 0.8s ease;
+}
+
+.flip,
+.flip > div{
+  width: inherit;
+  height: inherit;
+  transition: transform 0.8s;
+}
+
+.flip > div{
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.front{
+  transform: perspective(600px) rotateY(0deg);
+}
+
+.back{
+  transform: perspective(600px) rotateY(-180deg);
+}
+
+.scene:hover .front{
+  transform: perspective(600px) rotateY(-180deg);
+}
+
+.scene:hover .back{
+  transform: perspective(600px) rotateY(-360deg);
+}
