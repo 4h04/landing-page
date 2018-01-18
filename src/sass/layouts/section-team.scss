@@ -1,7 +1,7 @@
 // Section Team
 
 .section-team {
-  padding:50px 0;
+  padding:50px 0 150px 0;
 }
 
 .section-team-intro{
@@ -18,7 +18,7 @@
   display: flex;
   flex-direction: row;
   -webkit-flex-flow: row wrap;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 0;
   margin: 0;
   list-style: none;

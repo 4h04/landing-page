@@ -1,0 +1,42 @@
+// Section Customers
+
+.section-customers {
+  padding:50px 0;
+  .section-title {
+    color: $main-grey;
+  }
+  .container {
+    max-width: 1200px;
+  }
+}
+
+.section-customers-container {
+  background: #f4f4f4;
+  padding: 50px 0;
+}
+
+.customers-container {
+  display: flex;
+  flex-direction: row;
+  -webkit-flex-flow: row wrap;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.customer-entry {
+  border-radius: 100%;
+  width: 15%;
+  transform: Scale(0.95);
+  transition: all .3s ease-in;
+  &:hover {
+    transform: Scale(1);
+    box-shadow: 0 0 20px #c1bfbf;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
